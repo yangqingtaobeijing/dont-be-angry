@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design Tokens / CSS Variables
+   ============================================================ */
+
+:root {
+  /* System font stack — no external CDN */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino,
+    "PingFang SC", "STKaiti", "KaiTi", serif;
+
+  /* Radii */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 24px rgba(93, 78, 66, 0.08);
+  --shadow-glow: 0 0 40px rgba(232, 160, 191, 0.3);
+  --shadow-warm: 0 8px 32px rgba(255, 205, 178, 0.2);
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+}
+
+/* ============================================================
+   Garden Theme (default)
+   ============================================================ */
+[data-theme="garden"],
+:root {
+  --bg-primary: #fff0f5;
+  --bg-secondary: #fff5ee;
+  --bg-card: #ffffff;
+  --text-primary: #4a3728;
+  --text-secondary: #8b7e74;
+  --text-muted: #b8a99a;
+  --accent-coral: #ff6b6b;
+  --accent-mint: #7ec8b7;
+  --accent-lavender: #b8a9c9;
+  --accent-yellow: #ffd93d;
+  --accent-peach: #ffcdb2;
+  --accent-rose: #e8a0bf;
+  --accent-sky: #b8d8e8;
+  --sidebar-bg: #fff8f5;
+  --sidebar-border: #f5e6df;
+}
+
+/* ============================================================
+   Starry Night Theme
+   ============================================================ */
+[data-theme="starry"] {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #222244;
+  --text-primary: #e8e0f0;
+  --text-secondary: #a89cc8;
+  --text-muted: #6e6494;
+  --accent-coral: #ff6b8a;
+  --accent-mint: #64dfdf;
+  --accent-lavender: #c8b6ff;
+  --accent-yellow: #ffd700;
+  --accent-peach: #ffb088;
+  --accent-rose: #d663a0;
+  --accent-sky: #7ec8e3;
+  --sidebar-bg: #151528;
+  --sidebar-border: #2a2a4a;
+}
+
+/* ============================================================
+   Ocean Theme
+   ============================================================ */
+[data-theme="ocean"] {
+  --bg-primary: #e8f4f8;
+  --bg-secondary: #d4f0e7;
+  --bg-card: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #5a7a8a;
+  --text-muted: #94b0bd;
+  --accent-coral: #ff7979;
+  --accent-mint: #55e6c1;
+  --accent-lavender: #a29bfe;
+  --accent-yellow: #ffeaa7;
+  --accent-peach: #fab1a0;
+  --accent-rose: #fd79a8;
+  --accent-sky: #74b9ff;
+  --sidebar-bg: #e0f0f0;
+  --sidebar-border: #c5e0e0;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-width: 1024px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--duration-slow) ease, color var(--duration-slow) ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent-coral);
+  text-decoration: none;
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Page Transition
+   ============================================================ */
+.page-enter-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.page-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* ============================================================
+   Utility Classes
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-warm);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--accent-peach);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-warm);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(255, 205, 178, 0.35);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: 2px solid var(--accent-peach);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-normal) ease;
+}
+.btn-secondary:hover {
+  background: var(--accent-peach);
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
