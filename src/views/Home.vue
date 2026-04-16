@@ -37,6 +37,7 @@ interface FeatureCard {
 }
 
 const featureCards: FeatureCard[] = [
+  { path: '/breathe', emoji: '🫁', title: '呼吸引导', description: '先深呼吸，静一静', color: '#A8D8EA' },
   { path: '/stress-relief', emoji: '🥊', title: '解压互动', description: '使劲戳出气！', color: '#FF6B6B' },
   { path: '/tao-message', emoji: '💌', title: '涛哥的话', description: '看看涛哥说了什么', color: '#E8A0BF' },
   { path: '/cost', emoji: '📊', title: '生气的代价', description: '生气真的很亏', color: '#FF8C42' },
